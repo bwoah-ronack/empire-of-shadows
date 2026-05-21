@@ -41,3 +41,38 @@ political opportunities
 economic booms
 
 The objective is to expand your empire carefully enough to achieve total domination before authorities or rival factions destroy everything you built.
+Key Features
+Dynamic Empire Building
+
+Create and expand a criminal-business network across multiple districts and cities.
+
+Risk vs Reward Strategy
+
+The more power you gain, the more dangerous your empire becomes.
+
+Randomized World Events
+
+No two playthroughs are the same.
+
+Terminal-Inspired Cyberpunk Aesthetic
+
+Minimalist neon visuals inspired by hacker terminals and underground networks.
+
+Expandable Systems
+
+Future upgrades can include:
+
+hacking
+stock market manipulation
+AI rivals
+diplomacy
+elections
+cartels
+multiplayer warfare
+intelligence agencies
+Genre
+Strategy
+Simulation
+Tycoon
+Management
+Text-Based RPG
