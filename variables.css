@@ -1,0 +1,64 @@
+/* variables.css — design tokens & theme */
+:root {
+  /* ── Palette ── */
+  --gold:           #C9A84C;
+  --gold-light:     #E8C96A;
+  --gold-dark:      #8B6914;
+  --gold-subtle:    rgba(201, 168, 76, 0.08);
+  --gold-glow:      rgba(201, 168, 76, 0.30);
+
+  --blood:          #8B1A1A;
+  --blood-light:    #C0392B;
+  --blood-subtle:   rgba(139, 26, 26, 0.15);
+
+  --stone:          #1a1a2e;
+  --stone-mid:      #16213e;
+  --stone-light:    #0f3460;
+
+  --parchment:      #F5E6C8;
+  --parchment-dark: #D4C09A;
+
+  --green:          #1a5c2e;
+  --green-light:    #27ae60;
+  --amber:          #e67e22;
+  --blue:           #2980b9;
+
+  /* ── Semantic text ── */
+  --text-primary:   #F5E6C8;
+  --text-muted:     #9e8a6a;
+  --text-faint:     #5c5040;
+
+  /* ── Borders ── */
+  --border-gold:    1px solid var(--gold-dark);
+  --border-subtle:  1px solid rgba(201, 168, 76, 0.2);
+  --border-faint:   1px solid rgba(255, 255, 255, 0.04);
+
+  /* ── Shadows ── */
+  --shadow-gold:    0 0 14px rgba(201, 168, 76, 0.3);
+  --shadow-blood:   0 0 14px rgba(139, 26, 26, 0.4);
+
+  /* ── Typography ── */
+  --font-display:   'Cinzel', 'Georgia', serif;
+  --font-body:      'Crimson Pro', 'Georgia', serif;
+
+  /* ── Spacing ── */
+  --gap-xs:   4px;
+  --gap-sm:   8px;
+  --gap-md:   12px;
+  --gap-lg:   20px;
+  --gap-xl:   32px;
+
+  /* ── Radius ── */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* ── Transitions ── */
+  --transition: 0.2s ease;
+  --transition-slow: 0.4s ease;
+
+  /* ── Z-index layers ── */
+  --z-base:    1;
+  --z-ui:      10;
+  --z-toast:   50;
+  --z-overlay: 100;
+}

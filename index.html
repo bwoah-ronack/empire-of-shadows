@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Empires Reborn — a turn-based strategy empire-building game">
+  <meta name="theme-color" content="#1a1a2e">
+  <title>Empires Reborn</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/screens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div id="app">
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN: MAIN MENU
+  ════════════════════════════════════════════ -->
+  <div class="screen active" id="menu-screen">
+    <div class="menu-bg"></div>
+    <div class="menu-ornament">⚔ Anno Domini ⚔</div>
+    <h1 class="menu-title">EMPIRES<br>REBORN</h1>
+    <p class="menu-subtitle">Rise. Conquer. Endure.</p>
+    <div class="menu-divider"></div>
+    <button class="menu-btn primary" id="btn-new-game">▶ New Campaign</button>
+    <button class="menu-btn" id="btn-how-to-play">📜 How to Play</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN: MODE SELECT
+  ════════════════════════════════════════════ -->
+  <div class="screen" id="mode-screen">
+    <h2 class="mode-title">Choose Your War</h2>
+    <p class="mode-sub">How do you wish to conquer?</p>
+    <div class="mode-cards">
+      <div class="mode-card" data-mode="single">
+        <div class="mode-card-icon">🤖</div>
+        <div class="mode-card-name">Single Player</div>
+        <div class="mode-card-desc">Face an AI empire. Choose your difficulty and prove your worth alone.</div>
+      </div>
+      <div class="mode-card" data-mode="multi">
+        <div class="mode-card-icon">⚔️</div>
+        <div class="mode-card-name">Local Multiplayer</div>
+        <div class="mode-card-desc">Pass &amp; play with 2–4 rivals on the same device. No mercy.</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="back-btn" data-target="menu-screen">← Back</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN: GAME SETUP
+  ════════════════════════════════════════════ -->
+  <div class="screen" id="setup-screen">
+    <div class="setup-panel">
+      <h2 class="setup-title" id="setup-title">Setup Your Empire</h2>
+      <div id="setup-body">
+        <!-- Dynamically populated by setup.js -->
+      </div>
+      <div class="btn-row">
+        <button class="back-btn" data-target="mode-screen">← Back</button>
+        <button class="menu-btn primary" id="btn-start-game">Begin Conquest →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN: GAME
+  ════════════════════════════════════════════ -->
+  <div class="screen" id="game-screen">
+    <div class="game-layout">
+
+      <!-- Top Bar -->
+      <header class="topbar">
+        <div class="topbar-title">⚔ EMPIRES REBORN</div>
+        <div class="topbar-players" id="topbar-players"></div>
+        <div class="topbar-turn" id="topbar-turn">Turn 1</div>
+        <div class="topbar-phase" id="topbar-phase">Your Turn</div>
+      </header>
+
+      <!-- Left Panel: Player Stats -->
+      <aside class="left-panel">
+        <div class="panel-title">Your Empire</div>
+        <div id="player-stats"></div>
+        <div class="section-divider"></div>
+        <div class="panel-title">Advisor</div>
+        <div id="advisor-msg" class="advisor-text"></div>
+      </aside>
+
+      <!-- Center: Map + Actions -->
+      <main class="center-panel">
+        <div class="map-grid" id="map-grid"></div>
+        <div class="section-divider"></div>
+        <div class="action-area">
+          <div class="action-title">Available Actions</div>
+          <div class="action-grid" id="action-grid"></div>
+          <button class="end-turn-btn" id="btn-end-turn">⚔ End Turn</button>
+        </div>
+      </main>
+
+      <!-- Right Panel: Intel + Log -->
+      <aside class="right-panel">
+        <div class="panel-title">Intelligence</div>
+        <div id="intel-panel"></div>
+        <div class="section-divider"></div>
+        <div class="panel-title">Chronicle</div>
+        <div class="event-log" id="event-log"></div>
+      </aside>
+
+      <!-- Bottom Bar -->
+      <footer class="bottombar">
+        <div class="bottombar-msg" id="bottom-msg">Select a territory or action.</div>
+        <div class="bottombar-resources" id="bottom-resources"></div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       OVERLAY: VICTORY / DEFEAT
+  ════════════════════════════════════════════ -->
+  <div class="overlay-screen" id="overlay-screen" aria-hidden="true">
+    <div class="overlay-title" id="overlay-title"></div>
+    <div class="overlay-sub" id="overlay-sub"></div>
+    <button class="menu-btn primary" id="btn-return-menu">Return to Menu</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       NOTIFICATION TOAST
+  ════════════════════════════════════════════ -->
+  <div class="notification" id="notif" role="status" aria-live="polite"></div>
+
+</div>
+
+<!-- Scripts (order matters) -->
+<script src="js/data/factions.js"></script>
+<script src="js/data/territories.js"></script>
+<script src="js/data/actions.js"></script>
+<script src="js/data/events.js"></script>
+<script src="js/state.js"></script>
+<script src="js/engine/combat.js"></script>
+<script src="js/engine/economy.js"></script>
+<script src="js/engine/ai.js"></script>
+<script src="js/engine/wincheck.js"></script>
+<script src="js/ui/notify.js"></script>
+<script src="js/ui/render.js"></script>
+<script src="js/ui/setup.js"></script>
+<script src="js/ui/map.js"></script>
+<script src="js/ui/hud.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

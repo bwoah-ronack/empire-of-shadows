@@ -1,0 +1,17 @@
+// js/ui/render.js — top-level render dispatcher
+
+const Render = (() => {
+
+  /** Re-render every UI region. */
+  function all() {
+    HUD.renderTopBar();
+    HUD.renderPlayerStats();
+    HUD.renderBottomBar();
+    MapUI.render();
+    HUD.renderActions();
+    HUD.renderIntel();
+    HUD.renderLog();
+  }
+
+  return { all };
+})();
